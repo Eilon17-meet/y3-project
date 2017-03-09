@@ -7,6 +7,11 @@ from passlib.apps import custom_app_context as pwd_context
 app = Flask(__name__)
 app.secret_key = "MY_SUPER_SECRET_KEY"
 
+engine = create_engine('sqlite:///database.db')
+Base.metadata.bind = engine
+DBSession = sessionmaker(bind=engine, autoflush=False)
+session = DBSession()
+
 @app.route('/')
 def home():
 	owner=None
