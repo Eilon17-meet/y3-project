@@ -1,6 +1,6 @@
 from flask import *
-from model import *
 from flask import session as login_session
+from model import *
 from passlib.apps import custom_app_context as pwd_context
 
 
