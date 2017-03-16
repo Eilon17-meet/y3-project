@@ -31,7 +31,7 @@ class Owner(Base):
     email = Column(String, unique=True)
     dob = Column(DateTime)
     hash_password = Column(String)
-    when_created=Column(DateTime, default=datetime.now())    
+    when_created=Column(DateTime, default=datetime.now())
     businesses = relationship('Business', back_populates='businesses')
 
     def hash_password(self, password):
