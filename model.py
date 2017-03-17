@@ -1,5 +1,5 @@
-from datetime import datetime
-from sqlalchemy import Column, Integer,String, DateTime, ForeignKey, Float, Boolean
+from datetime import *
+from sqlalchemy import Column, Integer, String, Date, ForeignKey, Float, Boolean
 from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
@@ -9,36 +9,40 @@ from itsdangerous import(TimedJSONWebSignatureSerializer as Serializer, BadSigna
 Base = declarative_base()
 
 
+class Owner(Base):
+    __tablename__ = 'owner'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    phone = Column(String)
+    email = Column(String)
+    dob = Column(Date)
+    city = Column(String)
+    address = Column(String)
+    zipcode = Column(String)
+    business = relationship("Business", back_populates="owner")
+
+
 class Business(Base):
     __tablename__ = 'business'
     id = Column(Integer, primary_key=True)
     name = Column(String)
     phone = Column(String)
-    email = Column(String, unique=True)
+    email = Column(String, unique=True) #Thats how you log in
+    hash_password = Column(String)      #Thats how you log in
     city = Column(String)
-    zipcode = Column(String)
     address = Column(String)
+    zipcode = Column(String)
     category = Column(String)
-    owners = relationship('Owner', back_populates='businesses')
-
-
-class Owner(Base):
-    __tablename__ = 'owner'
-    id = Column(Integer, primary_key=True)
-    username = Column(String)
-    name = Column(String)
-    phone = Column(String)
-    email = Column(String, unique=True)
-    dob = Column(DateTime)
-    hash_password = Column(String)
-    when_created=Column(DateTime, default=datetime.now())
-    businesses = relationship('Business', back_populates='businesses')
+    #comments = relationship("Comment", back_populates="business") #Not yet here
+    owner_id = Column(Integer, ForeignKey('owner.id'))
+    owner = relationship("Owner", back_populates="business")
 
     def hash_password(self, password):
         self.hash_password = pwd_context.encrypt(password)
 
     def verify_password(self, spassword):
         return pwd_context.verify(password, self.hash_password)
+
 
 
 engine = create_engine('sqlite:///database.db')
