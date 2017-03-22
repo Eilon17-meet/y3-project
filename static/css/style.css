@@ -4,9 +4,6 @@
     overflow: auto; /* Overflow due to float */
 }
 
-.navbarr {
-    background-color: red;
-}
 .icon-bar a {
     float: left; /* Float links side by side */
     text-align: center; /* Center-align text */
@@ -22,7 +19,7 @@
 }
 
 .active {
-    background-color: #4CAF50; /* Add an active/current color */
+    background-color: lightgrey; /* Add an active/current color */
 }
 .double-lines{
     height:20px;
@@ -33,20 +30,17 @@
 }
 body{
 
-background-color: #FE4A49;
+background-color: lightblue;
+padding-top: 50px;
  }
-h1{
-    font-family: 'Merriweather', serif;
-    font-size: 90px;
-    font-style: bold;
-}
+
 .container-fluid{
-    background-color:rgba(255,255,255,0.7);
+    background-color:grey;
 
 }
     
 .navbar-inverse{
-     border-color:rgba(255,255,255,0.7);
+     border-color:lightblue;
      background-color:transparent;
      border-radius: 0;
 
@@ -61,6 +55,44 @@ h1{
 width: 900px; height:40px; 
 border-radius: 5px;
 }
-.searchBar:hover{
-    opacity: 0.7;
+
+.dropdown.dropdown-lg .dropdown-menu {
+    margin-top: -1px;
+    padding: 6px 20px;
+}
+.input-group-btn .btn-group {
+    display: flex !important;
+}
+.btn-group .btn {
+    border-radius: 0;
+    margin-left: -1px;
+}
+.btn-group .btn:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.btn-group .form-horizontal .btn[type="submit"] {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.form-horizontal .form-group {
+    margin-left: 0;
+    margin-right: 0;
+}
+.form-group .form-control:last-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+@media screen and (min-width: 768px) {
+    #adv-search {
+        width: 500px;
+        margin: 0 auto;
+    }
+    .dropdown.dropdown-lg {
+        position: static !important;
+    }
+    .dropdown.dropdown-lg .dropdown-menu {
+        min-width: 500px;
+    }
 }

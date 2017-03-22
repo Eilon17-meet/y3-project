@@ -22,20 +22,20 @@ session.add(example_owner)
 session.commit()
 
 example_business_password='Business_Password_123'
+for i in xrange(1,10):
+	example_business= Business(
+		name="Falafel "+str(i),
+		phone='052423545',
+		email=str(i),
+		city='Haifa',
+		address='Hashalom 13',
+		zipcode='12345',
+		category='food',
+		owner_id=1)
 
-example_business= Business(
-	name="Falafel",
-	phone='052423545',
-	email='business1@gmail.com',
-	city='Haifa',
-	address='Hashalom 13',
-	zipcode='12345',
-	category='food',
-	owner_id=1)
-
-example_business.hash_password(example_business_password)
+	example_business.hash_password(example_business_password)
 
 
 
-session.add(example_business)
+	session.add(example_business)
 session.commit()

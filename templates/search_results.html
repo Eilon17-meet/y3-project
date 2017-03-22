@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Boost - Home</title>
+	<title>Boost - Search</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <!--<link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">-->
 
@@ -39,28 +39,18 @@
     </ul>
   </div>
 </nav>
-
-
-<!-- Page Content -->
-<div align="center"> 
-<!-- <div class="double-lines"> </div> -->
-
-  <br><br><br><br>
-  <img style="max-width:400px;" src="/static/pic/boost_logo.png"><br><br><br><br>
- <form class="form-group" action="{{url_for('search', s=request.form['s'])}}">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-    <div class="input-group input-group-lg">
-      <input type="text" class="form-control" name="s" placeholder="Search for Bussiness">
-      <span class="input-group-btn">
-        <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></span></button>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-  </div>
-  </div>
-</form>
-</div>
-</body>
-</html>
+<br>
+<h1>Search Results For: "{{search_term}}"</h1>
+{%for result in search_results%}
+<br>
+<div class="row">
+<div class="col-md-1"></div>
+<div class="list-group col-md-10" align="center">
+        <li class="list-group-item list-group-item-info"><strong><h3>Name: {{result.name}}</h3></strong></li>
+        <li class="list-group-item"><strong>Category:</strong> <i>{{result.category}}</i></li>
+        <li class="list-group-item"><strong>Address:</strong> <i>{{result.address}}, {{result.city}}</i></li>
+        <li class="list-group-item"><strong>Zipcode:</strong> <i>{{result.zipcode}}</i></li>
+        <li class="list-group-item"><strong>Phone:</strong> <i>{{result.phone}}</i></li>
+        <li class="list-group-item"><strong>Email:</strong> <i>{{result.email}}</i></li>
+</div></div>
+  {%endfor%}

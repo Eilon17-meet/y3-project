@@ -27,19 +27,18 @@ def login():
 	if request.method == 'GET':
 		return render_template('login.html')
 	elif request.method == 'POST':
-		username = request.form['username']
+		email = request.form['email']
 		password = request.form['password']
-		if username == "" or password == "":
+		if email == "" or password == "":
 			flash("Missing Arguements")
 			return redirect(url_for('login'))
 
-		owner = session.query(Owner).filter_by(username=username).first()
+		owner = session.query(Owner).filter_by(email=email).first()
 		if not owner:
 			flash("Incorrect password / email combination")
 			return redirect(url_for('login'))
-		elif verify_password(owner.username, password): 
-			flash('Login Successful. Welcome, %s' %user.firstname)
-			login_session['username']= owner.username
+		elif verify_password(owner.email, password): 
+			flash('Login Successful. Welcome Back, %s' %user.firstname)
 			login_session['name'] = owner.name
 			login_session['email'] = owner.email
 			login_session['id'] = owner.id
@@ -64,20 +63,19 @@ def logout():
 @app.route('/signup', methods = ['GET', 'POST'])
 def signup():
 	if request.method == 'POST':
-		username = request.form['username']
 		name = request.form['name']
 		phone = request.form['phone']
 		email = request.form['email']
 		dob = request.form['dob']
 		password = request.form['password']
 		confirmpassword = request.form['confirmpassword']
-		if username == "" or name == "" or phone == "" or email == "" or dob == "" or  password == "" or confirmpassword == "" :
+		if name == "" or phone == "" or email == "" or dob == "" or  password == "" or confirmpassword == "" :
 			flash("Your form is missing arguments")
 			return redirect(url_for('signup'))
-		if session.query(Owner).filter_by(username=username). first() is not None:
+		if session.query(Owner).filter_by(eamil=eamil). first() is not None:
 			flash("A user with this email address already exists")
 			return redirect(url_for('signup')) 
-		user = User(username=username,name=name, email=email, dob=dob, phone=phone)
+		user = User(name=name, email=email, dob=dob, phone=phone)
 		user.hash_password(password)
 		session.add(user)
 		session.commit()
@@ -86,7 +84,20 @@ def signup():
 	else:
 		return render_template('signup.html')
 
-
+@app.route('/search/<s>')
+def search(s):
+	search_results=[]
+	search_results+=session.query(Business).filter_by(name=str(s)).all()
+	search_results+=session.query(Business).filter_by(city=str(s)).all()
+	search_results+=session.query(Business).filter_by(address=str(s)).all()
+	search_results+=session.query(Business).filter_by(category=str(s)).all()
+	for word in str(s).split():
+		word=word.capitalize()
+		search_results+=session.query(Business).filter_by(name=word).all()
+		search_results+=session.query(Business).filter_by(city=word).all()
+		search_results+=session.query(Business).filter_by(address=word).all()
+		search_results+=session.query(Business).filter_by(category=word).all()
+	return render_template('search_results.html',search_results=search_results, search_term=s)
 
 
 
