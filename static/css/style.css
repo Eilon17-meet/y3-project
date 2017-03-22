@@ -1,0 +1,66 @@
+ .icon-bar {
+    width: 100%; /* Full-width */
+    background-color: #555; /* Dark-grey background */
+    overflow: auto; /* Overflow due to float */
+}
+
+.navbarr {
+    background-color: red;
+}
+.icon-bar a {
+    float: left; /* Float links side by side */
+    text-align: center; /* Center-align text */
+    width: 20%; /* Equal width (5 icons with 20% width each = 100%)
+    padding: 12px 0; /* Some top and bottom padding */
+    transition: all 0.3s ease; /* Add transition for hover effects */
+    color: white; /* White text color */
+    font-size: 36px; /* Increased font size */
+}
+
+.icon-bar a:hover {
+    background-color: #000; /* Add a hover color */
+}
+
+.active {
+    background-color: #4CAF50; /* Add an active/current color */
+}
+.double-lines{
+    height:20px;
+    border-bottom:5px solid white;
+    border-top:5px solid white;
+    margin-top :3px;
+    opacity: 0.7;
+}
+body{
+
+background-color: #FE4A49;
+ }
+h1{
+    font-family: 'Merriweather', serif;
+    font-size: 90px;
+    font-style: bold;
+}
+.container-fluid{
+    background-color:rgba(255,255,255,0.7);
+
+}
+    
+.navbar-inverse{
+     border-color:rgba(255,255,255,0.7);
+     background-color:transparent;
+     border-radius: 0;
+
+}
+.navbar-inverse .navbar-nav li a{
+    color:black;
+}
+.fa-home:before{
+ color:black;   
+}
+.searchBar{
+width: 900px; height:40px; 
+border-radius: 5px;
+}
+.searchBar:hover{
+    opacity: 0.7;
+}

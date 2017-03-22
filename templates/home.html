@@ -3,29 +3,43 @@
 <head>
 	<title>Home</title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">
+<!--<link rel="stylesheet" type="text/css" href="static/css/bootstrap.css">-->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript" src="static/js/bootstrap.js"></script>
-<link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 </head>
 <body>
 <!-- Navigation -->
     <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a href={{url_for('home')}} class="navbar-brand">GrowBiz (example NavBar)</a>
+      <a href={{url_for('home')}} class="navbar-brand"><i class="fa fa-home"></i></a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"> </span> Favorites [Left link example 1]</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-cloud-upload"> </span> Upload [Left link example 2]</a></li>
+      <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+     
 
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href={{url_for('signup')}}><span class="glyphicon glyphicon-user"></span> Sign Up [Right link example 1]</a></li>
-      <li><a href={{url_for('login')}}><span class="glyphicon glyphicon-log-in"></span> Login [Right link example 2]</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log Out [Right link example 3]</a></li>
+      
+      <li><a href={{url_for('login')}}><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log Out </a></li>
     </ul>
   </div>
 </nav>
+<div align="center"> 
+<!-- <div class="double-lines"> </div> -->
+<form>
+  <br><br><br><br>
+  <h1>
+    BOOST
+  </h1><br><br><br><br>
+  <input type="text" class= "searchBar" name="search-bar"  placeholder="city, category, product";><br>
+  
+</form>
+</div>
 {%if owner ==None%}
 <h1>Hi!</h1>
 {%else%}
