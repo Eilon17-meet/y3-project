@@ -12,12 +12,15 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine, autoflush=False)
 session = DBSession()
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def home():
-	owner=None
-	if 'id' in login_session:
-		owner=session.query(Owner).filter_by(id=login_session['id']).first()
-	return render_template('home.html', owner=owner)
+	if request.method=='GET':
+		owner=None
+		if 'id' in login_session:
+			owner=session.query(Owner).filter_by(id=login_session['id']).first()
+		return render_template('home.html', owner=owner)
+	elif request.method=='POST':
+		return redirect(url_for('search', s=request.form['s']))
 
 @app.route('/login')
 def login():
@@ -84,7 +87,7 @@ def signup():
 	else:
 		return render_template('signup.html')
 
-@app.route('/search/<s>')
+@app.route('/search/<string:s>', methods=['GET'])
 def search(s):
 	search_results=[]
 	search_results+=session.query(Business).filter_by(name=str(s)).all()
