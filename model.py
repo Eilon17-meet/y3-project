@@ -28,7 +28,7 @@ class Business(Base):
     name = Column(String)
     phone = Column(String)
     email = Column(String, unique=True) #Thats how you log in
-    hash_password = Column(String)      #Thats how you log in
+    password_hash = Column(String)      #Thats how you log in
     city = Column(String)
     address = Column(String)
     zipcode = Column(String)
@@ -38,10 +38,10 @@ class Business(Base):
     owner = relationship("Owner", back_populates="business")
 
     def hash_password(self, password):
-        self.hash_password = pwd_context.encrypt(password)
+        self.password_hash = pwd_context.encrypt(password)
 
-    def verify_password(self, spassword):
-        return pwd_context.verify(password, self.hash_password)
+    def verify_password(self, password):
+        return pwd_context.verify(password, self.password_hash)
 
 
 

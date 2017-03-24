@@ -12,6 +12,14 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine, autoflush=False)
 session = DBSession()
 
+def verify_password(email, password):
+    print '##################\n'+email+'\t'+password+'\n##############'
+    business = session.query(Business).filter_by(email=email).first()
+    if not business or not business.verify_password(password):
+        return False
+    g.business = business
+    return True
+
 @app.route('/', methods=['GET','POST'])
 def home():
     if request.method=='GET':
@@ -22,11 +30,12 @@ def home():
     elif request.method=='POST':
         return redirect(url_for('search', s=request.form['s']))
 
-@app.route('/login')
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if 'id' in login_session:
-        flash("You are already logged in")
-        return redirect(url_for('owner_profile.html', owner_id=login_session['id']))
+        flash("You are already logged in, "+login_session['name'])
+        return redirect(url_for('business', business_id=login_session['id']))
     if request.method == 'GET':
         return render_template('login.html')
     elif request.method == 'POST':
@@ -36,17 +45,18 @@ def login():
             flash("Missing Arguements")
             return redirect(url_for('login'))
 
-        owner = session.query(Owner).filter_by(email=email).first()
-        if not owner:
-            flash("Incorrect password / email combination")
-            return redirect(url_for('login'))
-        elif verify_password(owner.email, password): 
-            flash('Login Successful. Welcome Back, %s' %user.firstname)
-            login_session['name'] = owner.name
-            login_session['email'] = owner.email
-            login_session['id'] = owner.id
-            return redirect(url_for('owner_profile.html', owner_id=login_session['id']))
+        business = session.query(Business).filter_by(email=email).first()
+        if verify_password(email, password):
+            business = session.query(Business).filter_by(email=email).one()
+            login_session['name'] = business.name
+            login_session['email'] = business.email
+            login_session['id'] = business.id
 
+            flash('login Successful! Welcome back, %s.' % business.name)
+            return redirect(url_for('business', business_id=login_session['id']))
+        else:
+            flash('Incorrect username/password combination')
+            return redirect(url_for('login'))
 
 @app.route('/logout', methods = ['POST'])
 def logout():
@@ -60,7 +70,7 @@ def logout():
     flash("Logged out successfully")
     return redirect(url_for('home'))
 
-
+'''
 @app.route('/signup', methods = ['GET', 'POST'])
 def signup():
     if request.method == 'POST':
@@ -84,8 +94,8 @@ def signup():
         return redirect(url_for('login'))
     else:
         return render_template('signup.html')
-
-@app.route('/search/<string:s>', methods=['GET'])
+'''
+@app.route('/search/<s>', methods=['GET'])
 def search(s):
     search_results=[]
     search_results+=session.query(Business).filter_by(name=str(s)).all()
@@ -100,9 +110,9 @@ def search(s):
         search_results+=session.query(Business).filter_by(category=word).all()
     return render_template('search_results.html',search_results=search_results, search_term=s)
 
-@app.route('/business/<string:business_id>', methods=['GET'])
+@app.route('/business/<business_id>', methods=['GET'])
 def business(business_id):
-    business=session.query(Business).filter_by(id=business_id).all()
+    business=session.query(Business).filter_by(id=business_id).one()
     return render_template('business_profile.html', business=business)
 
 @app.route('/owner', methods=['GET'])
@@ -111,8 +121,8 @@ def owner():
         flash("You must be logged in order to preform this action")
         return redirect(url_for('login'))
     
-    business=session.query(Business).filter_by(id=login_session['id']).all()
-    return render_template('owner_profile.html', business=business)
+    owner=session.query(Business).filter_by(id=login_session['id']).all()
+    return render_template('owner_profile.html', owner=owner)
 
 
 if __name__ == '__main__':
