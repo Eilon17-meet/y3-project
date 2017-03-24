@@ -52,14 +52,13 @@ $(document).ready(function(){
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style> 
-#panel, #flip {
+#flip {
     padding: 5px;
     border: solid 1px #c3c3c3;
 }
 
 #panel {
-    padding: 50px;
-    display: none;
+    /*display: none;######################################################## FIX THE FLIP FIRST #################################################*/
 }
 </style>
 </head>
@@ -149,7 +148,9 @@ $(document).ready(function(){
 <div id="panel" class="row">
 <div class="col-md-1"></div>
 <div class="list-group col-md-10" align="center">
-        <li class="list-group-item black-list-item"><strong>Owner: </strong>{{business.owner.name}}</li>
+        <li class="list-group-item black-list-item"><strong>Owner's name: </strong>{{business.owner.name}}</li>
+        <li class="list-group-item black-list-item"><strong>Owner's phone: </strong>{{business.owner.phone}}</li>
+        <li class="list-group-item black-list-item"><strong>Owner's email: </strong>{{business.owner.email}}</li>
 </div></div>
 </body>
 </html>
