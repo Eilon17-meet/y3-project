@@ -95,6 +95,7 @@ def signup():
     else:
         return render_template('signup.html')
 '''
+
 @app.route('/search/<s>', methods=['GET'])
 def search(s):
     search_results=[]
