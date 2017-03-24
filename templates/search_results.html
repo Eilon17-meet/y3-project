@@ -18,7 +18,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="{{url_for('static',filename='lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-
+ <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css')}}">
     <!-- Additional fonts for this theme -->
     <link href="{{url_for('static',filename='lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -92,20 +92,21 @@
    <header style="margin-top: -25px;">
         <div class="header-content">
             <div class="header-content-inner">
-<h2 style="margin-top: ;">Search Results For: "{{search_term}}"</h2>
-<hr>
+                <h1 id="homeHeading" style="font-size:100px;">Search Results For: "{{search_term}}"</h1>
+                <hr>
+
 {% if search_results != [] %}
 {%for result in search_results%}
 <br>
 <div class="row">
 <div class="col-md-1"></div>
 <div class="list-group col-md-10" align="center">
-        <li class="list-group-item list-group-item-info"><strong><h3>Name: {{result.name}}</h3></strong></li>
-        <li class="list-group-item"><strong>Category:</strong> <i>{{result.category}}</i></li>
-        <li class="list-group-item"><strong>Address:</strong> <i>{{result.address}}, {{result.city}}</i></li>
-        <li class="list-group-item"><strong>Zipcode:</strong> <i>{{result.zipcode}}</i></li>
-        <li class="list-group-item"><strong>Phone:</strong> <i>{{result.phone}}</i></li>
-        <li class="list-group-item"><strong>Email:</strong> <i>{{result.email}}</i></li>
+        <li class="list-group-item list-group-item-info black-list-item"><strong><h3>Name: {{result.name}}</h3></strong></li>
+        <li class="list-group-item black-list-item"><strong>Category:</strong> {{result.category}}</li>
+        <li class="list-group-item black-list-item"><strong>Address:</strong> <i>{{result.address}}, {{result.city}}</i></li>
+        <li class="list-group-item black-list-item"><strong>Zipcode:</strong> <i>{{result.zipcode}}</i></li>
+        <li class="list-group-item black-list-item"><strong>Phone:</strong> <i>{{result.phone}}</i></li>
+        <li class="list-group-item black-list-item"><strong>Email:</strong> <i>{{result.email}}</i></li>
 </div></div>
   {%endfor%}
   {% else %}

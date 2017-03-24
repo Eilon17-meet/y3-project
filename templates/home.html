@@ -7,9 +7,9 @@
  -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript" src="{{url_for('static',filename='js/bootstrap.js') }}"></script>
-<!-- <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css')}}">
- --><link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
-<!--  -->
+ <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css')}}">
+<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -71,7 +71,7 @@
                         <a class="nav-link page-scroll" href="#contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#login">Login</a>
+                        <a class="nav-link page-scroll" href={{url_for('login')}}>Login</a>
                     </li>
                 </ul>
             </div>
