@@ -82,6 +82,19 @@
             <div class="header-content-inner">
                 <h1 id="homeHeading" style="font-size:100px;">Boost</h1>
                 <hr>
+                <div class = 'flash container'>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+
+        {% for message in messages %}
+<strong> {{ message }} </strong> 
+        {% endfor %}
+<br><br>
+        {% endif %}
+    {% endwith %}
+
+</div>
     <form class="form-group" action="{{url_for('home')}}" method="post">
       <div class="container">
         <div class="row">

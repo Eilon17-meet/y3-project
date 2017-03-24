@@ -58,12 +58,11 @@ def login():
             flash('Incorrect username/password combination')
             return redirect(url_for('login'))
 
-@app.route('/logout', methods = ['POST'])
+@app.route('/logout')
 def logout():
     if 'id' not in login_session:
         flash("You must be logged in order to log out")
         return redirect(url_for('home'))
-    del login_session['username']
     del login_session['name']
     del login_session['email']
     del login_session['id']

@@ -71,6 +71,11 @@ $(document).ready(function(){
             </a>
             <a class="navbar-brand page-scroll" href="{{url_for('home')}}">Boost</a>
             <div class="collapse navbar-collapse" id="navbarExample">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href={{url_for('logout')}}>Logout</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
