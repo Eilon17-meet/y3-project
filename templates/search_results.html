@@ -73,13 +73,12 @@
     </ul>
   </div>
 </nav> -->
-<body id="page-top">
 
     <!-- Navigation -->
     <nav id="mainNav" class="navbar fixed-top navbar-toggleable-md navbar-light">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+       <!--  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
+        </button> -->
         <div class="container">
             <a class="navbar-brand" rel="home" href="{{url_for('home')}}" title="Boost">
             <img style="max-width: 50px; margin-top: 0px; margin-right: -20px; margin-bottom: -3px;" src="/static/pic/boost_logo.png">
@@ -90,10 +89,10 @@
         </div>
     </nav>
 <br>
-   <header>
+   <header style="margin-top: -25px;">
         <div class="header-content">
             <div class="header-content-inner">
-<h2 style="margin-top: -220px;">Search Results For: "{{search_term}}"</h2>
+<h2 style="margin-top: ;">Search Results For: "{{search_term}}"</h2>
 <hr>
 {% if search_results != [] %}
 {%for result in search_results%}
