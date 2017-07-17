@@ -8,6 +8,24 @@ from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import(TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
 Base = declarative_base()
 
+# DELETE OWNER CLASS AND MAKE STATISTIC DATABASE
+class Stat(Base):
+    """Statistic info of each date"""
+    id = Column(Integer, primary_key=True)
+    date=Column(Date) #datetime.now()
+    start_hour=Column(Integer)
+    finish_hour=Column(Integer)
+    employees_amount=Column(Integer)
+    customers_amount=Column(Integer)
+    cost=Column(Float)
+    earnings=Column(Float)
+    
+    '''
+    -Opening hours
+-Amount of employees
+-Amount of customers
+-Daily costs
+-Earnings'''
 
 class Owner(Base):
     __tablename__ = 'owner'
@@ -15,7 +33,7 @@ class Owner(Base):
     name = Column(String)
     phone = Column(String)
     email = Column(String)
-    dob = Column(Date)
+    dob = Column(Date) #Date of birth
     city = Column(String)
     address = Column(String)
     zipcode = Column(String)
