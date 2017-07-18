@@ -12,7 +12,7 @@ Base = declarative_base()
 class Stat(Base):
     __tablename__= 'stat'
     id = Column(Integer, primary_key=True)
-    date=Column(Date) #datetime.now()
+    date=Column(Date, default=datetime.now())
     start_hour=Column(Integer)
     finish_hour=Column(Integer)
     employees_amount=Column(Integer)
@@ -34,9 +34,10 @@ class Business(Base):
     address = Column(String)
     zipcode = Column(String)
     category = Column(String)
+    about=Column(String) #I am -- from -- and this is my business...
     #comments = relationship("Comment", back_populates="business") #Not yet here
-    stat_id = Column(Integer, ForeignKey('stat.id'))
-    #stat = relationship("Stat", back_populates="business")
+    #stat_id = Column(Integer, ForeignKey('stat.id'))
+    stat = relationship("Stat")
 
     def hash_password(self, password):
         self.password_hash = pwd_context.encrypt(password)

@@ -94,7 +94,7 @@ def signup():
     else:
         return render_template('signup.html')
 '''
-
+'''
 @app.route('/search/<s>', methods=['GET']) #DELETE AND REPLACE WITH REVIEWS
 def search(s):
     search_results=[]
@@ -108,7 +108,7 @@ def search(s):
         search_results+=session.query(Business).filter_by(city=word).all()
         search_results+=session.query(Business).filter_by(address=word).all()
         search_results+=session.query(Business).filter_by(category=word).all()
-    return render_template('search_results.html',search_results=search_results, search_term=s)
+    return render_template('search_results.html',search_results=search_results, search_term=s)'''
 
 @app.route('/business/<business_id>', methods=['GET'])
 def business(business_id):
