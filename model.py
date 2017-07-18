@@ -10,7 +10,7 @@ Base = declarative_base()
 
 # DELETE OWNER CLASS AND MAKE STATISTIC DATABASE
 class Stat(Base):
-    """Statistic info of each date"""
+    __tablename__= 'stat'
     id = Column(Integer, primary_key=True)
     date=Column(Date) #datetime.now()
     start_hour=Column(Integer)
@@ -19,25 +19,8 @@ class Stat(Base):
     customers_amount=Column(Integer)
     cost=Column(Float)
     earnings=Column(Float)
-    
-    '''
-    -Opening hours
--Amount of employees
--Amount of customers
--Daily costs
--Earnings'''
-
-class Owner(Base):
-    __tablename__ = 'owner'
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    phone = Column(String)
-    email = Column(String)
-    dob = Column(Date) #Date of birth
-    city = Column(String)
-    address = Column(String)
-    zipcode = Column(String)
-    business = relationship("Business", back_populates="owner")
+    business_id=Column(Integer, ForeignKey('business.id'))
+    #business = relationship("Business", back_populates="stat")
 
 
 class Business(Base):
@@ -52,8 +35,8 @@ class Business(Base):
     zipcode = Column(String)
     category = Column(String)
     #comments = relationship("Comment", back_populates="business") #Not yet here
-    owner_id = Column(Integer, ForeignKey('owner.id'))
-    owner = relationship("Owner", back_populates="business")
+    stat_id = Column(Integer, ForeignKey('stat.id'))
+    #stat = relationship("Stat", back_populates="business")
 
     def hash_password(self, password):
         self.password_hash = pwd_context.encrypt(password)
