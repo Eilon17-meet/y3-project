@@ -25,8 +25,8 @@ def home():
     if request.method=='GET':
         owner=None
         if 'id' in login_session:
-            owner=session.query(Owner).filter_by(id=login_session['id']).first()
-        return render_template('home.html', owner=owner)
+            business=session.query(Business).filter_by(id=login_session['id']).first()
+        return render_template('home.html', business=business)
     elif request.method=='POST':
         return redirect(url_for('search', s=request.form['s']))
 
@@ -94,8 +94,8 @@ def signup():
     else:
         return render_template('signup.html')
 '''
-
-@app.route('/search/<s>', methods=['GET'])
+'''
+@app.route('/search/<s>', methods=['GET']) #DELETE AND REPLACE WITH REVIEWS
 def search(s):
     search_results=[]
     search_results+=session.query(Business).filter_by(name=str(s)).all()
@@ -108,7 +108,7 @@ def search(s):
         search_results+=session.query(Business).filter_by(city=word).all()
         search_results+=session.query(Business).filter_by(address=word).all()
         search_results+=session.query(Business).filter_by(category=word).all()
-    return render_template('search_results.html',search_results=search_results, search_term=s)
+    return render_template('search_results.html',search_results=search_results, search_term=s)'''
 
 @app.route('/business/<business_id>', methods=['GET'])
 def business(business_id):
