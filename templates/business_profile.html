@@ -62,6 +62,25 @@ $(document).ready(function(){
 </style>
 </head>
 <body>
+	<!--Facebook SDK-->
+	<script>
+  	window.fbAsyncInit = function() {
+    	FB.init({
+      	appId      : '133640553891456',
+      	xfbml      : true,
+      	version    : 'v2.9'
+    	});
+    FB.AppEvents.logPageView();
+  	};
+
+  	(function(d, s, id){
+     	var js, fjs = d.getElementsByTagName(s)[0];
+     	if (d.getElementById(id)) {return;}
+     	js = d.createElement(s); js.id = id;
+     	js.src = "//connect.facebook.net/en_US/sdk.js";
+     	fjs.parentNode.insertBefore(js, fjs);
+   		}(document, 'script', 'facebook-jssdk'));
+	</script>
 
     <!-- Navigation -->
     <nav id="mainNav" class="navbar fixed-top navbar-toggleable-md navbar-light">
@@ -104,6 +123,14 @@ $(document).ready(function(){
 
 </div>
 <br>
+<!--Place for SDKs-->
+
+<!--Facebook Page-->
+<div class="fb-page"
+  data-href="https://www.facebook.com/boost.hq" 
+  data-width="340"
+  data-hide-cover="false"
+  data-show-facepile="true"></div>
 <!-- Page After Flash -->
 <div class="row">
 <div class="col-md-1"></div>
