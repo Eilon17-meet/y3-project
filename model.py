@@ -30,6 +30,8 @@ class Business(Base):
     phone = Column(String)
     email = Column(String, unique=True) #Thats how you log in
     password_hash = Column(String)      #Thats how you log in
+    facebook_link=Column(String)
+    instagram_link=Column(String)
     city = Column(String)
     address = Column(String)
     zipcode = Column(String)

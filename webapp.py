@@ -25,8 +25,8 @@ def home():
     if request.method=='GET':
         owner=None
         if 'id' in login_session:
-            owner=session.query(Owner).filter_by(id=login_session['id']).first()
-        return render_template('home.html', owner=owner)
+            business=session.query(Business).filter_by(id=login_session['id']).first()
+        return render_template('home.html', business=business)
     elif request.method=='POST':
         return redirect(url_for('search', s=request.form['s']))
 
