@@ -23,7 +23,7 @@ def verify_password(email, password):
 @app.route('/', methods=['GET','POST'])
 def home():
     if request.method=='GET':
-        owner=None
+        # owner=None
         if 'id' in login_session:
             business=session.query(Business).filter_by(id=login_session['id']).first()
         return render_template('home.html', business=business)
@@ -115,14 +115,14 @@ def business(business_id):
     business=session.query(Business).filter_by(id=business_id).one()
     return render_template('business_profile.html', business=business)
 
-@app.route('/owner', methods=['GET'])
-def owner():
-    if 'id' not in login_session:
-        flash("You must be logged in order to preform this action")
-        return redirect(url_for('login'))
+# @app.route('/owner', methods=['GET'])
+# def owner():
+#     if 'id' not in login_session:
+#         flash("You must be logged in order to preform this action")
+#         return redirect(url_for('login'))
     
-    owner=session.query(Business).filter_by(id=login_session['id']).all()
-    return render_template('owner_profile.html', owner=owner)
+#     owner=session.query(Business).filter_by(id=login_session['id']).all()
+#     return render_template('owner_profile.html', owner=owner)
 
 
 if __name__ == '__main__':
