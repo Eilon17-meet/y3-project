@@ -19,7 +19,7 @@ example_business= Business(
 	instagram_link='https://www.instagram.com/eilon246810/', #My instagram page
 	city='Haifa',
 	address='Hashalom 13',
-	zipcode='12345',
+	zipcode='34652',
 	category='food')
 
 example_business.hash_password(example_business_password)
