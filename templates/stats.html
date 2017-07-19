@@ -9,10 +9,26 @@
 
 </head>
 
-<p>{{business.name}}</p>
+<p id="name" style='display:none'> <!-- do not remove --> {{business.name}}</p>
 
-<script type="text/javascript">
-  var subtitle = "Source: " + business.name;
+<script>
+  console.log(JSON.stringify({{business.name | tojson}}))
+/* COMMENTED OUT CODE IS A PLAGUE ON OUR WORKING CODE
+  // var biz_name_object = {{business.name | tojson}};
+  // console.log(typeof(biz_name_object));
+  // // var biz_name = JSON.stringify({{business.name | tojson}});
+  // //Number(JSON.stringify({{business.xxxxxxx | tojson}}))
+  // var biz_name = document.getElementById('name').innerText;
+  // var subtitle = "Source: " + biz_name;
+  // //var ---- = "source: " + string({{business.name}})
+  // $(function(){
+  //   var myChart = Highcharts.chart('container', {
+*/
+
+  //Number(JSON.p)
+  var biz_name = document.getElementById('name').innerText;
+  var subtitle = "Source: " + biz_name;
+  //var ---- = "source: " + string({{business.name}})
   $(function(){
     var myChart = Highcharts.chart('container', {
 

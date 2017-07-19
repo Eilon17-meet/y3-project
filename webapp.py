@@ -129,14 +129,14 @@ def business(business_id):
 
 
 
-# @app.route('/stats/<business_id>', methods=['GET'])
-# def stats(business_id):
-#     business=session.query(Business).filter_by(id=business_id).one()
-#     '''list1 = []
-#     for data in len(Business.stat):
-#         list1.append(Business.stat[data].date)
-#     '''
-#     return render_template('stats.html', business=business)
+@app.route('/stats/<business_id>', methods=['GET'])
+def stats(business_id):
+    business=session.query(Business).filter_by(id=business_id).one()
+    '''list1 = []
+    for data in len(Business.stat):
+        list1.append(Business.stat[data].date)
+    '''
+    return render_template('stats.html', business=business)
 
 
 
