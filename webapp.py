@@ -126,6 +126,5 @@ def business(business_id):
 #     owner=session.query(Business).filter_by(id=login_session['id']).all()
 #     return render_template('owner_profile.html', owner=owner)
 
-
 if __name__ == '__main__':
     app.run(debug=True)
