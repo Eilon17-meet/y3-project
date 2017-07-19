@@ -8,7 +8,6 @@ from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import(TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
 Base = declarative_base()
 
-# DELETE OWNER CLASS AND MAKE STATISTIC DATABASE
 class Stat(Base):
     __tablename__= 'stat'
     id = Column(Integer, primary_key=True)
@@ -27,6 +26,7 @@ class Business(Base):
     __tablename__ = 'business'
     id = Column(Integer, primary_key=True)
     name = Column(String)
+    owner_name=Column(String)
     phone = Column(String)
     email = Column(String, unique=True) #Thats how you log in
     password_hash = Column(String)      #Thats how you log in
