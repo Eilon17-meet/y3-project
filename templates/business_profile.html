@@ -42,23 +42,10 @@
         }
     }
     </style>
-<script> 
-$(document).ready(function(){
-    $("#flip").click(function(){
-        $("#panel").slideDown("slow");
-    });
-});
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<style> 
-#flip {
-    padding: 5px;
-    border: solid 1px #c3c3c3;
-}
 
-#panel {
-    /*display: none;######################################################## FIX THE FLIP FIRST #################################################*/
-}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 </style>
 </head>
 <body>
@@ -100,10 +87,11 @@ $(document).ready(function(){
     </nav>
     <br>
 <header style="margin-top: -25px;">
-        <div class="header-content" style="margin-top: 70px;">
+        <div class="header-content">
             <div class="header-content-inner">
                 <h1>{{business.name}}</h1>
                 <hr>
+                </div>
         <div class="row">
 
 <div class="col-md-1"></div>
@@ -120,7 +108,8 @@ $(document).ready(function(){
 
         {% endif %}
     {% endwith %}
-
+</div>
+</div>
 </div>
 <br>
 <!--Place for SDKs-->
@@ -132,20 +121,6 @@ $(document).ready(function(){
   data-hide-cover="false"
   data-show-facepile="true"></div>
 <!-- Page After Flash -->
-<div class="row">
-<div class="col-md-1"></div>
-<div class="list-group col-md-10" align="center">
-        <li class="list-group-item list-group-item-info black-list-item"><strong><h3>Name: {{business.name}}</h3></strong></li>
-        <li class="list-group-item black-list-item"><strong>Category: </strong> <i>{{business.category}}</i></li>
-        <li class="list-group-item black-list-item"><strong>Address: </strong> <i>{{business.address}}, {{business.city}}</i></li>
-        <li class="list-group-item black-list-item"><strong>Zipcode: </strong> <i>{{business.zipcode}}</i></li>
-        <li class="list-group-item black-list-item"><strong>Phone: </strong> <i>{{business.phone}}</i></li>
-        <li class="list-group-item black-list-item"><strong>Email: </strong> <i>{{business.email}}</i></li>
-</div></div>
-<br>
-<input type="button" id="flip" class="btn btn-info form-control" value="Contact Owner">
-<div id="panel" class="row">
-<div class="col-md-1"></div>
-</div>
+
 </body>
 </html>
