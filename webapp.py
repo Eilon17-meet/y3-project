@@ -127,14 +127,17 @@ def business(business_id):
 #     owner=session.query(Business).filter_by(id=login_session['id']).all()
 #     return render_template('owner_profile.html', owner=owner)
 
-@app.route('/stats/<business_id>', methods=['GET'])
-def stats(business_id):
-    business=session.query(Business).filter_by(id=business_id).one()
-    '''list1 = []
-    for data in len(Business.stat):
-        list1.append(Business.stat[data].date)
-    '''
-    return render_template('stats.html', business=business)
+
+
+# @app.route('/stats/<business_id>', methods=['GET'])
+# def stats(business_id):
+#     business=session.query(Business).filter_by(id=business_id).one()
+#     '''list1 = []
+#     for data in len(Business.stat):
+#         list1.append(Business.stat[data].date)
+#     '''
+#     return render_template('stats.html', business=business)
+
 
 
 if __name__ == '__main__':

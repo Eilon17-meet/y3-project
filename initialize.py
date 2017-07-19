@@ -13,7 +13,7 @@ session.query(Stat).delete()
 example_business_password='password'
 example_business= Business(
 	name="Falafel",
-	phone='052423545',
+	phone='+97256937304',
 	email='email',
 	facebook_link='https://www.facebook.com/boost.hq/', # Our  facebook page
 	instagram_link='https://www.instagram.com/boost.hq/', #Our instagram page
