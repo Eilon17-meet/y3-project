@@ -14,7 +14,7 @@ DBSession = sessionmaker(bind=engine, autoflush=False)
 session = DBSession()
 
 def verify_password(email, password):
-    print '##################\n'+email+'\t'+password+'\n##############'
+    #print '##################\n'+email+'\t'+password+'\n##############'
     business = session.query(Business).filter_by(email=email).first()
     if not business or not business.verify_password(password):
         return False
@@ -117,6 +117,30 @@ def search(s):
 def business(business_id):
     business=session.query(Business).filter_by(id=business_id).one()
     return render_template('business_profile.html', business=business)
+
+@app.route('/stats/', methods=['GET'])
+def stats(business_id):
+    business=session.query(Business).filter_by(id=login_session['id']).one()
+    return render_template('stats.html', business=business)
+
+@app.route('/update_details/', methods=['GET','POST'])
+def update_details(business_id):
+    business=session.query(Business).filter_by(id=login_session['id']).one()
+    if request.method=='GET':
+        return render_template('update_details.html', business=business)
+    elif request.method=='POST':
+        name=request.form['name']
+        owner_name=request.form['owner_name']
+        phone=request.form['phone']
+        email=request.form['email']
+        facebook_link=request.form['facebook_link']
+        instagram_link=request.form['instagram_link']
+        city=request.form['city']
+        address =request.form['address']
+        zipcode = request.form['zipcode']
+        category=request.form['category']
+        about=request.form['about']
+        
 
 # @app.route('/owner', methods=['GET'])
 # def owner():
