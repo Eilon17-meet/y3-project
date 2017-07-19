@@ -26,9 +26,11 @@ def home():
         # owner=None
         if 'id' in login_session:
             business=session.query(Business).filter_by(id=login_session['id']).first()
-        return render_template('home.html', business=business)
+            return render_template('home.html', business=business)
+        return render_template('home.html')
     elif request.method=='POST':
         return redirect(url_for('search', s=request.form['s']))
+
 
 
 @app.route('/login', methods=['GET', 'POST'])
