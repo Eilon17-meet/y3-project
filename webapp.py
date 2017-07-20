@@ -50,7 +50,7 @@ def login():
 
         business = session.query(Business).filter_by(email=email).first()
         if business.activated==False:
-            flash('Your account wasn\'t activated by Boost managers. For help please contact us.')
+            flash('Your account wasn\'t activated by Boost managers. For help please contact us.',business.activated)
             return redirect(url_for('home'))
         if verify_password(email, password):
             business = session.query(Business).filter_by(email=email).one()
