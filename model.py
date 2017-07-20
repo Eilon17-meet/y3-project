@@ -34,11 +34,11 @@ class Business(Base):
     instagram_link=Column(String)
     city = Column(String)
     address = Column(String)
-    zipcode = Column(String)
     category = Column(String)
     about=Column(String) #I am -- from -- and this is my business...
     #comments = relationship("Comment", back_populates="business") #Not yet here
     #stat_id = Column(Integer, ForeignKey('stat.id'))
+    website=Column(String)
     stat = relationship("Stat")
     # stat = relationship(Stat
     
