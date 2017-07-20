@@ -38,7 +38,7 @@ def home():
 def login():
     if 'id' in login_session:
         flash("You are already logged in, "+login_session['name'])
-        return redirect(url_for('business', business_id=login_session['id']))
+        return redirect(url_for('business'))
     if request.method == 'GET':
         return render_template('login.html')
     elif request.method == 'POST':
@@ -143,7 +143,9 @@ def stats():
         flash('You have to login in order to see this information.')
         return redirect(url_for('login'))
     business=session.query(Business).filter_by(id=login_session['id']).one()
-    return render_template('stats.html', business=business)
+    print business.name
+    print(business.getEarnings())
+    return render_template('stats.html',business=business, name = business.name, stats = business.getEarnings())
 
 @app.route('/signup/', methods=['GET','POST'])
 def signup():

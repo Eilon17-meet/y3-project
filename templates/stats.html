@@ -9,14 +9,36 @@
 
 </head>
 
-<p id="name" style='display:none'> <!-- do not remove --> {{business.name}}</p>
+<p id="name" style='display:none'> <!-- do not remove --> {{name}}</p>
+<p id="stat" style='display:none'> <!-- do not remove --> {{stats}}</p>
 
 <!-- COMMENTING OUT IS CAUSING ERRORS -->
 
+
 <script>
-  console.log(JSON.stringify({{business.name | tojson}}))
+
+    var stats = [];
+  console.log('in script');
+  console.log(JSON.stringify({{business.name | tojson}}));
+  console.log(JSON.stringify({{business.stat | tojson}}));
+  console.log(parseInt({{business.stat[0].earnings | tojson}}));
+
+  var range = {{business.stat | length}};
+
+  console.log(range)
+
+  for(var i = 0; i<range; i++) {
+    console.log(i);
+
+    var I_love_you_charlie = parseInt({{business.stat[0].earnings | tojson}});
+    console.log(I_love_you_charlie);
+    stats.push[I_love_you_charlie];
+  }
+
+
   var biz_name = document.getElementById('name').innerText;
-  var subtitle = "Source: " + biz_name;
+  var subtitle = biz_name;
+
   //var ---- = "source: " + string({{business.name}})
   $(function(){
     var myChart = Highcharts.chart('container', {
@@ -31,7 +53,7 @@
 
     yAxis: {
         title: {
-            text: 'Earnings'
+            text: 'Money'
         }
     },
     legend: {
