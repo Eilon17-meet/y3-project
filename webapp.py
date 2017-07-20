@@ -159,7 +159,7 @@ def signup():
         instagram_link=request.form['instagram_link']
         city=request.form['city']
         address =request.form['address']
-        # category=request.form['category']
+        category=request.form['category']
         about=request.form['about']
         website=request.form['website']
         print('abt to make business in DB')
@@ -172,7 +172,7 @@ def signup():
             instagram_link=instagram_link,
             city=city,
             address=address,
-            # category=category,
+            category=category,
             about=about,
             activated=False,
             website=website)
