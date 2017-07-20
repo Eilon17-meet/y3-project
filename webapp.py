@@ -49,14 +49,17 @@ def login():
             return redirect(url_for('login'))
 
         business = session.query(Business).filter_by(email=email).first()
+        if business.activated==False:
+            flash('Your account wasn\'t activated by Boost managers. For help please contact us.')
+            return redirect(url_for('home'))
         if verify_password(email, password):
             business = session.query(Business).filter_by(email=email).one()
             login_session['name'] = business.name
             login_session['email'] = business.email
             login_session['id'] = business.id
 
-            flash('login Successful! Welcome back, %s.' % business.name)
-            return redirect(url_for('business', business_id=login_session['id']))
+            flash('Login Successful! Welcome back, %s.' % business.name)
+            return redirect(url_for('business'))
         else:
             flash('Incorrect username/password combination')
             return redirect(url_for('login'))
@@ -113,13 +116,32 @@ def search(s):
         search_results+=session.query(Business).filter_by(category=word).all()
     return render_template('search_results.html',search_results=search_results, search_term=s)'''
 
-@app.route('/business/<business_id>', methods=['GET'])
-def business(business_id):
-    business=session.query(Business).filter_by(id=business_id).one()
-    return render_template('business_profile.html', business=business)
+@app.route('/business/', methods=['GET','POST'])
+def business():
+    business=session.query(Business).filter_by(id=login_session['id']).one()
+    if request.method=='GET':
+        return render_template('business_profile.html', business=business)
+    elif request.method=='POST':
+        if 'id' not in login_session:
+            flash('You have to login in order to see this information.')
+            return redirect(url_for('login'))
+        date=request.form['date']
+        customers_amount=request.form['customers_amount']
+        earnings=request.form['earnings']
+        stat=Stat(
+            date=date,
+            customers_amount=customers_amount,
+            earnings=earnings,
+            business_id=login_session['id']
+            )
+        session.add(stat)
+        session.commit()
 
 @app.route('/stats/', methods=['GET'])
-def stats(business_id):
+def stats():
+    if 'id' not in login_session:
+        flash('You have to login in order to see this information.')
+        return redirect(url_for('login'))
     business=session.query(Business).filter_by(id=login_session['id']).one()
     return render_template('stats.html', business=business)
 
@@ -132,14 +154,15 @@ def signup():
         owner_name=request.form['owner_name']
         phone=request.form['phone']
         email=request.form['email']
-        password_hash=request.form['password_hash']
+        password=request.form['password']
         facebook_link=request.form['facebook_link']
         instagram_link=request.form['instagram_link']
         city=request.form['city']
         address =request.form['address']
-        zipcode = request.form['zipcode']
-        category=request.form['category']
+        # category=request.form['category']
         about=request.form['about']
+        website=request.form['website']
+        print('abt to make business in DB')
         business=Business(
             name=name,
             owner_name=owner_name,
@@ -149,19 +172,14 @@ def signup():
             instagram_link=instagram_link,
             city=city,
             address=address,
-            zipcode=zipcode,
-            category=category,
-            about=about)
-        business.hash_password(password_hash)
+            # category=category,
+            about=about,
+            activated=False,
+            website=website)
+        business.hash_password(password)
         session.add(business)
         session.commit()
-        business = session.query(Business).filter_by(email=email).one()
-        login_session['name'] = business.name
-        login_session['email'] = business.email
-        login_session['id'] = business.id
-
-        flash('Signup Successful! Welcome back, %s.' % business.name)
-        return redirect(url_for('business', business_id=login_session['id'])) 
+        return redirect(url_for('home')) 
 
 # @app.route('/owner', methods=['GET'])
 # def owner():

@@ -20,8 +20,10 @@ example_business= Business(
 	instagram_link='https://www.instagram.com/boost.hq/', #Our instagram page
 	city='Haifa',
 	address='Hashalom 13',
-	zipcode='34652',
-	category='food')
+	category='food',
+	about='BEST FALAEL EVER!',
+	activated=True,
+	website='anything')
 
 example_business.hash_password(example_business_password)
 
