@@ -151,7 +151,7 @@ def signup():
             address=address,
             zipcode=zipcode,
             category=category,
-            about=-about)
+            about=about)
         business.hash_password(password_hash)
         session.add(business)
         session.commit()
@@ -174,12 +174,7 @@ def signup():
 
 
 
-@app.route('/stats/<business_id>', methods=['GET'])
-def stats(business_id):
-    business=session.query(Business).filter_by(id=business_id).one()
-    return render_template('stats.html', business=business)
-
-
+@app.route('get')
 
 if __name__ == '__main__':
     app.run(debug=True)
