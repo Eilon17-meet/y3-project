@@ -2,7 +2,7 @@ from flask import *
 from flask import session as login_session
 from model import *
 from passlib.apps import custom_app_context as pwd_context
-from schedule_sms import *
+#from schedule_sms import *
 
 
 app = Flask(__name__)
