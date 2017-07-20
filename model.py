@@ -41,7 +41,6 @@ class Business(Base):
     website=Column(String)
     package=Column(String)
     stat = relationship("Stat")
-    # stat = relationship(Stat
     
     activated=Column(Boolean)
 

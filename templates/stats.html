@@ -20,20 +20,20 @@
     var stats = [];
   console.log('in script');
   console.log(JSON.stringify({{business.name | tojson}}));
-  console.log(JSON.stringify({{business.stat | tojson}}));
+  console.log(JSON.stringify({{business.stat[0].date | tojson}}));
   console.log(parseInt({{business.stat[0].earnings | tojson}}));
 
   var range = {{business.stat | length}};
 
   console.log(range)
 
-  for(var i = 0; i<range; i++) {
-    console.log(i);
+{%for i in range(business.stat | length)%}
 
-    var I_love_you_charlie = parseInt({{business.stat[0].earnings | tojson}});
+    var I_love_you_charlie = parseInt({{business.stat[i].earnings | tojson}});
     console.log(I_love_you_charlie);
-    stats.push[I_love_you_charlie];
-  }
+    stats.push(I_love_you_charlie);
+
+  {%endfor%}
 
 
   var biz_name = document.getElementById('name').innerText;
@@ -70,7 +70,7 @@
 
     series: [{
         name: 'Earnings',
-        data: [2545, 2279, 2387, 2454, 2525, 2647, 2715, 2958]
+        data: stats
     }
     /*, {
         name: 'Manufacturing',
