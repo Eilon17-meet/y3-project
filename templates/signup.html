@@ -38,23 +38,23 @@
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-                    first_name: {
+                    name: {
                         validators: {
                                 stringLength: {
                                 min: 2,
                             },
                                 notEmpty: {
-                                message: 'Please supply your first name'
+                                message: 'Please supply your business name'
                             }
                         }
                     },
-                     last_name: {
+                     owner_name: {
                         validators: {
                              stringLength: {
                                 min: 2,
                             },
                             notEmpty: {
-                                message: 'Please supply your last name'
+                                message: 'Please supply your name'
                             }
                         }
                     },
@@ -64,16 +64,15 @@
                             notEmpty: {
                                 message: 'Please supply your phone number'
                             },
-                            phone: {
-                                country: 'US',
-                                message: 'Please supply a vaild phone number with area code'
+                            stringLength:{
+                              min:9
                             }
                         }
                     },
                     address: {
                         validators: {
                              stringLength: {
-                                min: 8,
+                                min: 5,
                             },
                             notEmpty: {
                                 message: 'Please supply your street address'
@@ -90,33 +89,22 @@
                             }
                         }
                     },
-                    state: {
+                    category: {
                         validators: {
                             notEmpty: {
-                                message: 'Please select your state'
+                                message: 'Please select your business category'
                             }
                         }
                     },
-                    zip: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please supply your zip code'
-                            },
-                            zipCode: {
-                                country: 'US',
-                                message: 'Please supply a vaild zip code'
-                            }
-                        }
-                    },
-            comment: {
+            about: {
                         validators: {
                               stringLength: {
                                 min: 10,
-                                max: 200,
-                                message:'Please enter at least 10 characters and no more than 200'
+                                max: 250,
+                                message:'Please enter at least 10 characters and no more than 250'
                             },
                             notEmpty: {
-                                message: 'Please supply a description about yourself'
+                                message: 'Please supply a description about your business'
                             }
                             }
                          }, 
@@ -190,7 +178,7 @@
         {% if messages %}
 
         <ul>
-        {% for message in messages %}
+       {% for message in messages %}
             <li> <strong> {{ message }} </strong> </li>
         {% endfor %}
         </ul>
@@ -207,16 +195,16 @@
 <fieldset>
 
 <!-- Form Name -->
-<legend>Contact Us Today!</legend>
+<legend>Contact Us!</legend>
 
 <!-- Text input-->
 
 <div class="form-group">
-  <label class="col-md-4 control-label">First Name</label>  
+  <label class="col-md-4 control-label">Business Name</label>  
   <div class="col-md-6 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  name="first_name" placeholder="First Name" class="form-control"  type="text">
+  <input  name="name" placeholder="Business/Company Name" class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -224,22 +212,22 @@
 <!-- Text input-->
 
 <div class="form-group">
-  <label class="col-md-4 control-label" >Last Name</label> 
+  <label class="col-md-4 control-label" >Full Name</label> 
     <div class="col-md-6 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="last_name" placeholder="Last Name" class="form-control"  type="text">
+  <input name="owner_name" placeholder="Your Name" class="form-control"  type="text">
     </div>
   </div>
 </div>
-
+<br><br>
 <!-- Text input-->
        <div class="form-group">
-  <label class="col-md-4 control-label">E-Mail</label>  
+  <label class="col-md-4 control-label">City</label>  
     <div class="col-md-6 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input name="email" placeholder="E-Mail Address" class="form-control"  type="text">
+  <input name="city" placeholder="What city is your business in?" class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -248,139 +236,75 @@
 <!-- Text input-->
        
 <div class="form-group">
-  <label class="col-md-4 control-label">Phone #</label>  
-    <div class="col-md-6 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
-    </div>
-  </div>
-</div>
-
-<!-- Text input-->
-      
-<div class="form-group">
   <label class="col-md-4 control-label">Address</label>  
     <div class="col-md-6 inputGroupContainer">
     <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input name="address" placeholder="Address" class="form-control" type="text">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+  <input name="address" placeholder="Address of your business" class="form-control" type="text">
     </div>
   </div>
 </div>
-
-<!-- Text input-->
- 
-<div class="form-group">
-  <label class="col-md-4 control-label">City</label>  
-    <div class="col-md-6 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input name="city" placeholder="city" class="form-control"  type="text">
-    </div>
-  </div>
-</div>
-
-<!-- Select Basic -->
-   
+<br>
+<!-- Food Category -->
 <div class="form-group"> 
-  <label class="col-md-4 control-label">State</label>
+  <label class="col-md-4 control-label">Type of Business</label>
     <div class="col-md-4 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="state" class="form-control selectpicker" >
-      <option value=" " >Please select your state</option>
-      <option>Alabama</option>
-      <option>Alaska</option>
-      <option >Arizona</option>
-      <option >Arkansas</option>
-      <option >California</option>
-      <option >Colorado</option>
-      <option >Connecticut</option>
-      <option >Delaware</option>
-      <option >District of Columbia</option>
-      <option> Florida</option>
-      <option >Georgia</option>
-      <option >Hawaii</option>
-      <option >daho</option>
-      <option >Illinois</option>
-      <option >Indiana</option>
-      <option >Iowa</option>
-      <option> Kansas</option>
-      <option >Kentucky</option>
-      <option >Louisiana</option>
-      <option>Maine</option>
-      <option >Maryland</option>
-      <option> Mass</option>
-      <option >Michigan</option>
-      <option >Minnesota</option>
-      <option>Mississippi</option>
-      <option>Missouri</option>
-      <option>Montana</option>
-      <option>Nebraska</option>
-      <option>Nevada</option>
-      <option>New Hampshire</option>
-      <option>New Jersey</option>
-      <option>New Mexico</option>
-      <option>New York</option>
-      <option>North Carolina</option>
-      <option>North Dakota</option>
-      <option>Ohio</option>
-      <option>Oklahoma</option>
-      <option>Oregon</option>
-      <option>Pennsylvania</option>
-      <option>Rhode Island</option>
-      <option>South Carolina</option>
-      <option>South Dakota</option>
-      <option>Tennessee</option>
-      <option>Texas</option>
-      <option> Uttah</option>
-      <option>Vermont</option>
-      <option>Virginia</option>
-      <option >Washington</option>
-      <option >West Virginia</option>
-      <option>Wisconsin</option>
-      <option >Wyoming</option>
+    <select name="category" class="form-control selectpicker" >
+      <option value=" " >Please select your business category</option>
+      <option>Baby products shops</option>
+      <option>Construction work</option>
+      <option >Cosmetics</option>
+      <option >Deliveries</option>
+      <option >Fashion</option>
+      <option >Grocery shops and supermarkets</option>
+      <option >Office supply shops and toy stores</option>
+      <option >Optics</option>
+      <option >Pet shops</option>
+      <option >Restaurants, cafes, fast food places, bakeries, bars</option>
+      <option >Tourist agencies</option>
     </select>
   </div>
 </div>
 </div>
 
 <!-- Text input-->
-
+      
 <div class="form-group">
-  <label class="col-md-4 control-label">Zip Code</label>  
+  <label class="col-md-4 control-label">Small Description</label>  
     <div class="col-md-6 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input name="zip" placeholder="Zip Code" class="form-control"  type="text">
-    </div>
-</div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label">Website or domain name</label>  
-   <div class="col-md-6 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
-  <input name="website" placeholder="Website or domain name" class="form-control" type="text">
+  <input name="about" placeholder="Tell us about your company!" class="form-control" type="text" maxlength="250">
     </div>
   </div>
 </div>
+<br><br>
 
-
-<!-- Text area -->
-  
 <div class="form-group">
-  <label class="col-md-4 control-label">Project Description</label>
+  <label class="col-md-4 control-label">Phone Num.</label>  
     <div class="col-md-6 inputGroupContainer">
     <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-          <textarea class="form-control" name="comment" placeholder="Project Description"></textarea>
-  </div>
+        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+  <input name="phone" placeholder="Phone number" class="form-control"  type="text">
+    </div>
+</div>
+</div>
+<!-- Text input-->
+ 
+<div class="form-group">
+  <label class="col-md-4 control-label">E-mail</label>  
+    <div class="col-md-6 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+  <input name="email" placeholder="E-mail address" class="form-control"  type="text">
+    </div>
   </div>
 </div>
+
+<!-- Password -->
+
 <div class="form-group has-feedback">
             <label for="password"  class="col-md-4 control-label">
                     Password
@@ -411,6 +335,46 @@
                 <span class="help-block with-errors"></span>
              </div>
 </div></div>
+<br>
+<!-- Text input-->
+
+
+<br>
+<!-- Add radio inputs -->
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label">Facebook page (if any)</label>  
+   <div class="col-md-6 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+  <input name="facebook_link" placeholder="Facebook page link" class="form-control" type="text">
+    </div>
+  </div>
+</div>
+
+
+<!-- Text area -->
+  
+<div class="form-group">
+  <label class="col-md-4 control-label">Instagram page (if any)</label>
+    <div class="col-md-6 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+          <input class="form-control" name="instagram_link" placeholder="Instagram page link"></input>
+  </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label">Website link</label>
+    <div class="col-md-6 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+          <input class="form-control" name="website" placeholder="Do you have a website?"></input>
+  </div>
+  </div>
+</div>
 
 <!-- Success message -->
 <div class="alert alert-success" align="center" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>

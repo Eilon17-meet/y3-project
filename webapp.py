@@ -154,14 +154,15 @@ def signup():
         owner_name=request.form['owner_name']
         phone=request.form['phone']
         email=request.form['email']
-        password_hash=request.form['password_hash']
+        password=request.form['password']
         facebook_link=request.form['facebook_link']
         instagram_link=request.form['instagram_link']
         city=request.form['city']
         address =request.form['address']
-        zipcode = request.form['zipcode']
-        category=request.form['category']
+        # category=request.form['category']
         about=request.form['about']
+        website=request.form['website']
+        print('abt to make business in DB')
         business=Business(
             name=name,
             owner_name=owner_name,
@@ -171,20 +172,14 @@ def signup():
             instagram_link=instagram_link,
             city=city,
             address=address,
-            zipcode=zipcode,
-            category=category,
+            # category=category,
             about=about,
-            activated=False)
-        business.hash_password(password_hash)
+            activated=False,
+            website=website)
+        business.hash_password(password)
         session.add(business)
         session.commit()
-        business = session.query(Business).filter_by(email=email).one()
-        login_session['name'] = business.name
-        login_session['email'] = business.email
-        login_session['id'] = business.id
-
-        flash('Signup Successful! Welcome back, %s.' % business.name)
-        return redirect(url_for('business')) 
+        return redirect(url_for('home')) 
 
 # @app.route('/owner', methods=['GET'])
 # def owner():
