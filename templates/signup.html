@@ -96,6 +96,13 @@
                             }
                         }
                     },
+                    package: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please choose a package'
+                            }
+                        }
+                    },
             about: {
                         validators: {
                               stringLength: {
@@ -195,8 +202,23 @@
 <fieldset>
 
 <!-- Form Name -->
-<legend>Contact Us!</legend>
+<legend>Work with us!</legend>
 
+<!-- Package choosing -->
+<div class="form-group"> 
+  <label class="col-md-4 control-label">Chosen Package</label>
+    <div class="col-md-4 selectContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+    <select name="package" class="form-control selectpicker" >
+      <option value=" " >Please select a package</option>
+      <option>package 1</option>
+      <option>package 2</option>
+      <option>package 3</option>
+    </select>
+  </div>
+</div>
+</div>
 <!-- Text input-->
 
 <div class="form-group">
