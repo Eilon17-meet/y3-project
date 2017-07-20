@@ -47,16 +47,14 @@ def login():
         if email == "" or password == "":
             flash("Missing Arguements")
             return redirect(url_for('login'))
-
-        business = session.query(Business).filter_by(email=email).first()
-        if business.activated==False:
-            flash('Your account wasn\'t activated by Boost managers. For help please contact us.',business.activated)
-            return redirect(url_for('home'))
         if verify_password(email, password):
             business = session.query(Business).filter_by(email=email).one()
+            if business.activated==False:
+                flash('Your account wasn\'t activated by Boost managers. For help please contact us.')
+                return redirect(url_for('home'))
+            login_session['id'] = business.id
             login_session['name'] = business.name
             login_session['email'] = business.email
-            login_session['id'] = business.id
 
             flash('Login Successful! Welcome back, %s.' % business.name)
             return redirect(url_for('business'))
@@ -69,9 +67,9 @@ def logout():
     if 'id' not in login_session:
         flash("You must be logged in order to log out")
         return redirect(url_for('home'))
+    del login_session['id']
     del login_session['name']
     del login_session['email']
-    del login_session['id']
     flash("Logged out successfully")
     return redirect(url_for('home'))
 
