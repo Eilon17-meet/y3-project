@@ -12,8 +12,8 @@ session.query(Stat).delete()
 
 example_business_password='password'
 example_business= Business(
-	name="Falafel",
-	owner_name='Rihana',
+	name="Boost",
+	owner_name='Boost Staff',
 	phone='+97256937304',
 	email='email',
 	facebook_link='https://www.facebook.com/boost.hq/', # Our  facebook page
@@ -21,7 +21,7 @@ example_business= Business(
 	city='Haifa',
 	address='Hashalom 13',
 	category='food',
-	about='BEST FALAEL EVER!',
+	about='The Boost Company',
 	activated=True,
 	website='anything',
 	package='none')
