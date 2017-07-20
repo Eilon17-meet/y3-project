@@ -21,7 +21,9 @@ example_business= Business(
 	city='Haifa',
 	address='Hashalom 13',
 	zipcode='34652',
-	category='food')
+	category='food',
+	about='BEST FALAEL EVER!',
+	activated=True)
 
 example_business.hash_password(example_business_password)
 

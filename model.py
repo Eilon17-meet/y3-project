@@ -40,6 +40,8 @@ class Business(Base):
     #comments = relationship("Comment", back_populates="business") #Not yet here
     #stat_id = Column(Integer, ForeignKey('stat.id'))
     stat = relationship("Stat")
+    
+    activated=Column(Boolean)
 
     def hash_password(self, password):
         self.password_hash = pwd_context.encrypt(password)
