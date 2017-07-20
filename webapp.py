@@ -123,16 +123,16 @@ def stats(business_id):
     business=session.query(Business).filter_by(id=login_session['id']).one()
     return render_template('stats.html', business=business)
 
-@app.route('/update_details/', methods=['GET','POST'])
-def update_details(business_id):
-    business=session.query(Business).filter_by(id=login_session['id']).one()
+@app.route('/signup/', methods=['GET','POST'])
+def signup():
     if request.method=='GET':
-        return render_template('update_details.html', business=business)
+        return render_template('signup.html')
     elif request.method=='POST':
         name=request.form['name']
         owner_name=request.form['owner_name']
         phone=request.form['phone']
         email=request.form['email']
+        password_hash=request.form['password_hash']
         facebook_link=request.form['facebook_link']
         instagram_link=request.form['instagram_link']
         city=request.form['city']
@@ -140,7 +140,28 @@ def update_details(business_id):
         zipcode = request.form['zipcode']
         category=request.form['category']
         about=request.form['about']
-        
+        business=Business(
+            name=name,
+            owner_name=owner_name,
+            phone=phone,
+            email=email,
+            facebook_link=facebook_link,
+            instagram_link=instagram_link,
+            city=city,
+            address=address,
+            zipcode=zipcode,
+            category=category,
+            about=about)
+        business.hash_password(password_hash)
+        session.add(business)
+        session.commit()
+        business = session.query(Business).filter_by(email=email).one()
+        login_session['name'] = business.name
+        login_session['email'] = business.email
+        login_session['id'] = business.id
+
+        flash('Signup Successful! Welcome back, %s.' % business.name)
+        return redirect(url_for('business', business_id=login_session['id'])) 
 
 # @app.route('/owner', methods=['GET'])
 # def owner():
@@ -151,16 +172,6 @@ def update_details(business_id):
 #     owner=session.query(Business).filter_by(id=login_session['id']).all()
 #     return render_template('owner_profile.html', owner=owner)
 
-
-
-@app.route('/stats/<business_id>', methods=['GET'])
-def stats(business_id):
-    business=session.query(Business).filter_by(id=business_id).one()
-    '''list1 = []
-    for data in len(Business.stat):
-        list1.append(Business.stat[data].date)
-    '''
-    return render_template('stats.html', business=business)
 
 
 
