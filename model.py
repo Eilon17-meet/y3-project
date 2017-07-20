@@ -39,6 +39,7 @@ class Business(Base):
     #comments = relationship("Comment", back_populates="business") #Not yet here
     #stat_id = Column(Integer, ForeignKey('stat.id'))
     website=Column(String)
+    package=Column(String)
     stat = relationship("Stat")
     
     activated=Column(Boolean)

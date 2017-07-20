@@ -162,6 +162,7 @@ def signup():
         category=request.form['category']
         about=request.form['about']
         website=request.form['website']
+        package=request.form['package']
         print('abt to make business in DB')
         business=Business(
             name=name,
@@ -175,7 +176,8 @@ def signup():
             category=category,
             about=about,
             activated=False,
-            website=website)
+            website=website,
+            package =package)
         business.hash_password(password)
         session.add(business)
         session.commit()

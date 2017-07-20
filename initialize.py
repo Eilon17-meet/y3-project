@@ -23,7 +23,8 @@ example_business= Business(
 	category='food',
 	about='BEST FALAEL EVER!',
 	activated=True,
-	website='anything')
+	website='anything',
+	package='none')
 
 example_business.hash_password(example_business_password)
 
