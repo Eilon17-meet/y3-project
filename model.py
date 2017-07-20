@@ -40,7 +40,6 @@ class Business(Base):
     #stat_id = Column(Integer, ForeignKey('stat.id'))
     website=Column(String)
     stat = relationship("Stat")
-    # stat = relationship(Stat
     
     activated=Column(Boolean)
 
