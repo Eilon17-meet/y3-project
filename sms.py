@@ -1,18 +1,28 @@
 
 import plivo
-auth_id = "MAZGRIZDI2YMQYZDC4NT"
-auth_token = "MDI0MzhhZGNiMTg4ZDhhZGQ1ZWNmMTk5ZmE1ODUx"
 
-p = plivo.RestAPI(auth_id, auth_token)
+def send_sms(src,dst,text,url=None):
+    
 
-params = {
-    'src': 'Boost', # Sender's phone number with country code
-    'dst' : '972526937304<972533329274', # Receiver's phone Number with country code
-    'text' : u"Thanks for working with us!", # Your SMS Text Message - English
-    'url' : 'http://boosts.co/receive_sms/'
-}
+    auth_id = "MAZGRIZDI2YMQYZDC4NT"
+    auth_token = "MDI0MzhhZGNiMTg4ZDhhZGQ1ZWNmMTk5ZmE1ODUx"
 
-response = p.send_message(params)
+    if type(dst)==list:
+        dst=''.join(number + '<' for number in dst)[:-1]
+
+    p = plivo.RestAPI(auth_id, auth_token)
+
+    params = {
+        'src': src,     #'Boost', # Sender's phone number with country code
+        'dst' : dst,    #'972526937304<972533329274', # Receiver's phone Number with country code
+        'text' : text,  #u"Thanks for working with us!", # Your SMS Text Message - English
+        'url' : url,    # 'http://boosts.co/receive_sms/'
+    }
+
+    response = p.send_message(params)
+
+
+
 '''
 # Prints the complete response
 print str(response)
@@ -77,5 +87,5 @@ def receive_sms():
 
     return 'Message received - From: %s, To: %s, Text: %s' % (from_number, to_number, text)
 if __name__ == '__main__':
-	app.run(debug=True)
+    app.run(debug=True)
 '''
